@@ -2,6 +2,7 @@
   "name": "chaos-organizer-backend",
   "version": "0.1.0",
   "description": "Backend for Chaos Organizer bot-organizer",
+  "type": "module",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
