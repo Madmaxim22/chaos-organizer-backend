@@ -1,0 +1,18 @@
+{
+  "messages": [
+    {
+      "id": "test-id-1",
+      "type": "text",
+      "content": "Тестовое сообщение после импорта",
+      "timestamp": "2026-02-08T12:00:00.000Z",
+      "author": "Тестер",
+      "encrypted": false,
+      "pinned": false,
+      "favorite": false
+    }
+  ],
+  "reminders": [],
+  "stickers": [],
+  "favorites": [],
+  "pinnedMessage": null
+}
