@@ -1,0 +1,35 @@
+{
+  "name": "chaos-organizer-backend",
+  "version": "0.1.0",
+  "description": "Backend for Chaos Organizer bot-organizer",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "koa": "^2.15.0",
+    "koa-router": "^12.0.0",
+    "koa-body": "^6.0.1",
+    "koa-static": "^5.0.0",
+    "ws": "^8.14.2",
+    "http-event-stream": "^0.2.0",
+    "crypto-js": "^4.1.1",
+    "@zip.js/zip.js": "^2.8.17"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "eslint": "^8.56.0"
+  },
+  "keywords": ["organizer", "bot", "messenger", "koa"],
+  "author": {
+    "name": "Maksim Muhomedyarov",
+    "email": "madmaxim22@gmail.com"
+  },
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/Madmaxim22/chaos-organizer-backend.git"
+  },
+  "license": "MIT"
+}
