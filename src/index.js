@@ -1,15 +1,14 @@
 import Koa from 'koa';
-import Router from 'koa-router';
 import koaBody from 'koa-body';
 import serve from 'koa-static';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import router from './routes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = new Koa();
-const router = new Router();
 
 // Middleware для обработки JSON и multipart/form-data
 app.use(koaBody.default({
@@ -20,23 +19,6 @@ app.use(koaBody.default({
 
 // Обслуживание статических файлов из папки public
 app.use(serve(path.join(__dirname, '../public')));
-
-// Базовый маршрут для проверки работоспособности
-router.get('/', (ctx) => {
-  ctx.body = {
-    message: 'Chaos Organizer Backend is running',
-    timestamp: new Date().toISOString(),
-    endpoints: {
-      messages: '/api/messages',
-      reminders: '/api/reminders',
-      commands: '/api/commands',
-      attachments: '/api/attachments',
-      export: '/api/export',
-      import: '/api/import',
-      events: '/api/events',
-    },
-  };
-});
 
 // Подключение маршрутов
 app.use(router.routes()).use(router.allowedMethods());
