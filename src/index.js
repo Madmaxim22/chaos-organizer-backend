@@ -1,7 +1,6 @@
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import http from 'http';
 import Koa from 'koa';
 import koaBody from 'koa-body';
 import cors from 'koa-cors';
@@ -43,12 +42,10 @@ app.use((ctx) => {
 });
 
 const PORT = process.env.PORT || 3000;
-// Explicit HTTP server so WebSocket upgrade is on the same server (matches Render docs pattern).
-const server = http.createServer(app.callback());
-attachWebSocket(server);
-server.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Сервер запущен на порту ${PORT}`);
 });
+attachWebSocket(server);
 
 function saveStateOnExit() {
   dataStore.persistSync();
