@@ -10,13 +10,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "@zip.js/zip.js": "^2.8.17",
-    "crypto-js": "^4.1.1",
     "http-event-stream": "^0.2.0",
+    "jszip": "^3.10.1",
     "koa": "^2.15.0",
     "koa-body": "^6.0.1",
+    "koa-cors": "^0.0.16",
     "koa-router": "^12.0.0",
-    "koa-static": "^5.0.0",
     "uuid": "^13.0.0",
     "ws": "^8.14.2"
   },
