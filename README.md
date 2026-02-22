@@ -33,6 +33,7 @@
    ```env
    PORT=3000
    API_YANDEX_MAPS_KEY=your_key   # для /api/static-map
+   CORS_ORIGIN=https://your-user.github.io   # для деплоя: origin фронта (GitHub Pages), через запятую — несколько
    ```
 
 4. Запуск:
@@ -164,7 +165,7 @@ chaos-organizer-backend/
 ├── data/
 │   └── state.json         # Персистентное состояние (создаётся при первом сохранении)
 ├── package.json
-├── .env                   # Опционально: PORT, API_YANDEX_MAPS_KEY
+├── .env                   # Опционально: PORT, API_YANDEX_MAPS_KEY, CORS_ORIGIN
 └── README.md
 ```
 
@@ -174,6 +175,7 @@ chaos-organizer-backend/
 |------------|----------|
 | `PORT` | Порт HTTP-сервера (по умолчанию `3000`) |
 | `API_YANDEX_MAPS_KEY` | Ключ Yandex Static API для эндпоинта `/api/static-map` |
+| `CORS_ORIGIN` | Разрешённый origin для CORS (например `https://your-user.github.io` для GitHub Pages; несколько — через запятую). Не задано — разрешён любой origin |
 
 ## Зависимости (основные)
 
