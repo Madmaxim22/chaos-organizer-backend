@@ -109,7 +109,13 @@ export class FileService {
       // Перемещаем файл из временного места в целевую папку
       await fsPromises.rename(file.filepath, filePath);
     } catch (renameError) {
-      throw renameError;
+      // EXDEV: на разных ФС (напр. /tmp и /opt на Render) rename не работает — копируем и удаляем
+      if (renameError.code === 'EXDEV') {
+        await fsPromises.copyFile(file.filepath, filePath);
+        await fsPromises.unlink(file.filepath).catch(() => {});
+      } else {
+        throw renameError;
+      }
     }
 
     const mimeType =
