@@ -1,0 +1,37 @@
+{
+  "messages": [
+    {
+      "id": "1f027db8-a160-498b-94e9-4bc80ce9d114",
+      "type": "file",
+      "author": "Пользователь",
+      "content": "Добавляю файл😊",
+      "timestamp": "2026-02-23T11:17:03.709Z",
+      "metadata": [
+        {
+          "id": "6f40baa2-7d44-4a43-a852-a520a811a62e",
+          "fileName": "test.pdf",
+          "fileExtension": ".pdf",
+          "fileSize": 26800,
+          "mimeType": "application/pdf"
+        }
+      ],
+      "encrypted": false,
+      "pinned": false,
+      "favorite": false
+    },
+    {
+      "id": "103ca540-2d2e-474a-855d-f3422174ba87",
+      "type": "text",
+      "author": "Пользователь",
+      "content": "Привет мир!",
+      "timestamp": "2026-02-23T11:10:31.432Z",
+      "encrypted": false,
+      "pinned": false,
+      "favorite": false
+    }
+  ],
+  "reminders": [],
+  "stickers": [],
+  "favorites": [],
+  "pinnedMessage": null
+}

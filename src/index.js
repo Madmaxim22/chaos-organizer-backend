@@ -15,15 +15,7 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 const app = new Koa();
-
-// CORS: в проде задайте CORS_ORIGIN (например https://your-user.github.io или несколько через запятую)
-const allowedOrigins = process.env.CORS_ORIGIN
-  ? process.env.CORS_ORIGIN.split(',').map(s => s.trim()).filter(Boolean)
-  : null;
 app.use(cors({
-  origin: allowedOrigins
-    ? (ctx) => { const o = ctx.request.get('origin') || ''; return allowedOrigins.includes(o) ? o : false; }
-    : true,
   methods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
 }));
 
