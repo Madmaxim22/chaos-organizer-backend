@@ -1,6 +1,7 @@
 import fs from "fs/promises";
 import Router from "koa-router";
 import { dataStore } from "../DataStore.js";
+import { applyArchive } from "../ArchiveService.js";
 
 const router = new Router();
 
@@ -22,7 +23,6 @@ async function getArchiveFromRequest(ctx) {
   return ctx.request.body?.archive ?? null;
 }
 
-// Импорт истории из архива JSON (файл или body.archive)
 router.post("/api/import", async (ctx) => {
   let archive;
   try {
@@ -39,60 +39,17 @@ router.post("/api/import", async (ctx) => {
     return;
   }
 
-  // Валидация обязательных полей
   if (!Array.isArray(archive.messages)) {
     ctx.status = 400;
     ctx.body = { error: "Архив должен содержать массив messages." };
     return;
   }
 
-  // Очистка текущих данных (опционально, можно добавить флаг merge)
-  dataStore.clearAll();
-
-  // Импорт сообщений
-  archive.messages.forEach((msg) => {
-    // Проверяем наличие обязательных полей
-    if (msg.id && msg.type && msg.content && msg.timestamp) {
-      dataStore.messages.push(msg);
-    }
-  });
-
-  // Импорт избранного
-  if (Array.isArray(archive.favorites)) {
-    archive.favorites.forEach((id) => dataStore.favorites.add(id));
-  }
-
-  // Импорт напоминаний
-  if (Array.isArray(archive.reminders)) {
-    archive.reminders.forEach((rem) => dataStore.reminders.push(rem));
-  }
-
-  // Импорт стикеров
-  if (Array.isArray(archive.stickers)) {
-    archive.stickers.forEach((sticker) => dataStore.stickers.push(sticker));
-  }
-
-  // Импорт закреплённого сообщения
-  if (archive.pinnedMessage && archive.pinnedMessage.id) {
-    const pinned = dataStore.messages.find(
-      (m) => m.id === archive.pinnedMessage.id,
-    );
-    if (pinned) {
-      dataStore.pinnedMessage = pinned;
-      pinned.pinned = true;
-    }
-  }
-
-  dataStore.schedulePersist();
+  const imported = applyArchive(dataStore, archive);
 
   ctx.body = {
     success: true,
-    imported: {
-      messages: dataStore.messages.length,
-      favorites: dataStore.favorites.size,
-      reminders: dataStore.reminders.length,
-      stickers: dataStore.stickers.length,
-    },
+    imported,
   };
 });
 
